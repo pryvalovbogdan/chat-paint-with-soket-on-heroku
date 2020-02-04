@@ -174,11 +174,11 @@ document.getElementById("but").addEventListener("click", ()=>{
     xhr.open("POST", "https://stormy-refuge-28123.herokuapp.com/saveLine");
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(sendObj));
-    xhr.onload = function () {
-        // if (xhr.status === 200 && xhr.readyState === 4) {
+    xhr.onreadystatechange = function () {
+        if (xhr.status === 200 && xhr.readyState === 4) {
 
             //console.log(this.response)
 
-      //  }
+       }
     };
 });
