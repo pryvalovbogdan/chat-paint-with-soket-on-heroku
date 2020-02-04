@@ -131,7 +131,7 @@ console.log(r.root)
 //draws([2,5,6,1,3])
 
 
-let socket = new WebSocket("ws://radiant-earth-93466.herokuapp.com/");
+let socket = new WebSocket("ws://stormy-refuge-28123.herokuapp.com/");
 var paint = document.querySelector("#canvas1");
 var ctx = paint.getContext("2d");
 
