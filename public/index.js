@@ -173,7 +173,7 @@ document.getElementById("but").addEventListener("click", ()=>{
     xhr.onload = function () {
         // if (xhr.status === 200 && xhr.readyState === 4) {
 
-            console.log(JSON.parse(this.response))
+            console.log(this.response)
 
       //  }
     };
