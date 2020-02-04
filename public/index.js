@@ -130,7 +130,7 @@ paint.addEventListener("mousedown", (e)=>{
         moveTo:[e.offsetX, e.offsetY],
         lineTo:[2]
     };
-    console.log(obj)
+
 });
 paint.addEventListener("mousemove", (e)=>{
 
@@ -138,7 +138,6 @@ paint.addEventListener("mousemove", (e)=>{
     // ctx.save();
     ctx.lineTo(e.offsetX, e.offsetY);
     obj.lineTo.push(e.offsetX, e.offsetY)
-    console.log(obj)
     ctx.stroke();
     // ctx.restore()
 
@@ -147,17 +146,15 @@ paint.addEventListener("mousemove", (e)=>{
 paint.addEventListener('mouseup', () => {
     draw = false;
     allArr.push(obj)
-    console.log(allArr)
+
 });
 paint.addEventListener('mouseout', () => draw = false);
 
 document.getElementById("but").addEventListener("click", ()=>{
 
-    //console.log({allArr})
     var sendObj = {
         allArr: allArr
     }
-    console.log(sendObj)
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://stormy-refuge-28123.herokuapp.com/saveLine");
     xhr.setRequestHeader("Content-type", "application/json");
