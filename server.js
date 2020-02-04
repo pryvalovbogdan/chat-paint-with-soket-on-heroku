@@ -10,7 +10,9 @@ app.listen(PORT, function () {
 
 var allArr;
 app.post("/saveline", function (req, res) {
-    console.log(req.body)
+
+    allArr = req.body;
+    res.json(allArr);
     // client.query(`SELECT * FROM teachers WHERE login = '${user.login}';`, [], function (err, result) {
     //     console.log(result.rows, `${user.login}`);
     //     var baselogin;
