@@ -191,10 +191,11 @@ document.addEventListener("DOMContentLoaded", function () {
     xhr.send();
     xhr.onreadystatechange = function () {
         if (xhr.status === 200 && xhr.readyState === 4) {
-            if(this.response !== null) {
-                var x = JSON.parse(this.response);
-                console.log(x)
-            }
+            console.log(this.response)
+            // if(this.response !== {}) {
+            //     var x = JSON.parse(this.response);
+            //     console.log(x)
+            // }
 
         }
     };
