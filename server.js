@@ -20,7 +20,7 @@ app.post("/saveLine", function (req, res) {
 
 });
 
-app.get("getLine", function (req, res) {
+app.get("/getLine", function (req, res) {
     res.json(allArr)
 })
 //process.env.PORT ||
