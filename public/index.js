@@ -131,7 +131,7 @@ BStree.prototype.addNode = function(node, value) {
 //draws([2,5,6,1,3])
 
 
-let socket = new WebSocket("ws://stormy-refuge-28123.herokuapp.com/");
+// let socket = new WebSocket("ws://stormy-refuge-28123.herokuapp.com/");
 var paint = document.querySelector("#canvas1");
 var ctx = paint.getContext("2d");
 
@@ -155,7 +155,7 @@ paint.addEventListener("mousedown", (e)=>{
     draw = true;
     ctx.beginPath();
     ctx.moveTo(e.offsetX, e.offsetY);
-    socket.send("hello");
+    //socket.send("hello");
 
 });
 paint.addEventListener("mousemove", (e)=>{
@@ -174,8 +174,8 @@ paint.addEventListener('mouseup', () => {
 paint.addEventListener('mouseout', () => draw = false);
 
 
-document.onload = function (e) {
-    socket.onmessage = function(e) {
-        console.log(e.data);
-    }
-}
+// document.onload = function (e) {
+//     socket.onmessage = function(e) {
+//         console.log(e.data);
+//     }
+// }
