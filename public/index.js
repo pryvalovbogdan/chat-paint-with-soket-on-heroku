@@ -130,7 +130,7 @@ paint.addEventListener("mousedown", (e)=>{
         moveTo:[e.offsetX, e.offsetY],
         lineTo:[2]
     };
-
+    console.log(obj)
 });
 paint.addEventListener("mousemove", (e)=>{
 
@@ -138,6 +138,7 @@ paint.addEventListener("mousemove", (e)=>{
     // ctx.save();
     ctx.lineTo(e.offsetX, e.offsetY);
     obj.lineTo.push(e.offsetX, e.offsetY)
+    console.log(obj)
     ctx.stroke();
     // ctx.restore()
 
@@ -146,12 +147,30 @@ paint.addEventListener("mousemove", (e)=>{
 paint.addEventListener('mouseup', () => {
     draw = false;
     allArr.push(obj)
+    console.log(allArr)
 });
 paint.addEventListener('mouseout', () => draw = false);
 
+document.getElementById("but").addEventListener("click", ()=>{
 
-// document.onload = function (e) {
-//     socket.onmessage = function(e) {
-//         console.log(e.data);
-//     }
-// }
+    ctx.beginPath();
+    ctx.moveTo(allArr[0].moveTo[0],  allArr[0].moveTo[1]);
+    ctx.strokeStyle = "green";
+    ctx.lineWidth = 30;
+    var lineArr = allArr[0].lineTo;
+    for(var i = 1; i < lineArr.length; i = i + 2){
+        if(lineArr[i + 1] == undefined){
+            return;
+        }else {
+            ctx.lineTo(lineArr[i], lineArr[i + 1]);
+            ctx.stroke()
+        }
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://stormy-refuge-28123.herokuapp.com/saveline");
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(JSON.stringify(allArr));
+    xhr.onload = function () {
+        console.log("good")
+    }
+});
