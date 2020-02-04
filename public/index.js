@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
     xhr.onreadystatechange = function () {
         if (xhr.status === 200 && xhr.readyState === 4) {
             if(this.response !== null) {
-                var x = this.response;
+                var x = JSON.parse(this.response);
                 console.log(x)
             }
 
