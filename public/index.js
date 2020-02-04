@@ -92,46 +92,16 @@ BStree.prototype.addNode = function(node, value) {
 // console.log(r.root)
 //
 //
-// function draws(arr) {
-//     if (arr.length === 1) return;
-//     var canvas = document.getElementById('canvas');
-//     var ctx = canvas.getContext('2d');
-//     var count = 0;
-//     var min = arr[0];
-//     for(var i = 0; i < arr.length; i++) {
-//
-//         if (min < arr[i + 1]) {
-//             console.log(arr[i])
-//             ctx.beginPath();
-//             var x = 195 + i * 50; // x coordinate
-//             var y = 75 + i * 50; // y coordinate
-//             var radius = 25; // Arc radius
-//             var startAngle = 0; // Starting point on circle
-//            // var endAngle = Math.PI + (Math.PI * j) / 2; // End point on circle
-//             ctx.arc(x, y, radius, 0, 360);
-//             ctx.stroke();
-//
-//
-//         } else{
-//             count++;
-//             console.log(arr[i])
-//             ctx.beginPath();
-//             var x = 195 - i* 50; // x coordinate
-//             var y = 75 + i * 50; // y coordinate
-//             var radius = 25; // Arc radius
-//             var startAngle = 0; // Starting point on circle
-//            // var endAngle = Math.PI + (Math.PI * j) / 2; // End point on circle
-//             ctx.arc(x, y, radius, 0, 360);
-//             ctx.stroke();
-//
-//         }
-//     }
-// }
-
-//draws([2,5,6,1,3])
-
-
 // let socket = new WebSocket("ws://stormy-refuge-28123.herokuapp.com/");
+
+
+var obj = {
+    color: "black",
+    moveTo:[1],
+    lineTo:[2]
+};
+var allArr = [];
+
 var paint = document.querySelector("#canvas1");
 var ctx = paint.getContext("2d");
 
@@ -149,13 +119,17 @@ var lineWidth = document.querySelector("#lineWidth");
 lineWidth.addEventListener("change", (e)=>{
     ctx.lineWidth = e.target.value;
 });
-
+var obj
 
 paint.addEventListener("mousedown", (e)=>{
     draw = true;
     ctx.beginPath();
     ctx.moveTo(e.offsetX, e.offsetY);
-    //socket.send("hello");
+    obj = {
+        color: "black",
+        moveTo:[e.offsetX, e.offsetY],
+        lineTo:[2]
+    };
 
 });
 paint.addEventListener("mousemove", (e)=>{
@@ -163,6 +137,7 @@ paint.addEventListener("mousemove", (e)=>{
     if(!draw) return;
     // ctx.save();
     ctx.lineTo(e.offsetX, e.offsetY);
+    obj.lineTo.push(e.offsetX, e.offsetY)
     ctx.stroke();
     // ctx.restore()
 
@@ -170,6 +145,7 @@ paint.addEventListener("mousemove", (e)=>{
 });
 paint.addEventListener('mouseup', () => {
     draw = false;
+    allArr.push(obj)
 });
 paint.addEventListener('mouseout', () => draw = false);
 
