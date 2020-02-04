@@ -170,6 +170,7 @@ document.getElementById("but").addEventListener("click", ()=>{
     var sendObj = {
         allArr: allArr
     }
+    console.log(sendObj)
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://stormy-refuge-28123.herokuapp.com/saveLine");
     xhr.setRequestHeader("Content-type", "application/json");

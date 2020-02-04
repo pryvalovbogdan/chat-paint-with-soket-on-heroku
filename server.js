@@ -13,6 +13,6 @@ app.post("/saveLine", function (req, res) {
 
     allArr = req.allArr;
 
-    res.json(allArr)
+    res.send(allArr)
 
 });
