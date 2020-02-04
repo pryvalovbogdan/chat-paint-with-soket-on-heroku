@@ -12,7 +12,7 @@ var allArr;
 app.post("/saveline", function (req, res) {
 
     allArr = req.body;
-    res.json(allArr);
+    res.send(allArr);
     // client.query(`SELECT * FROM teachers WHERE login = '${user.login}';`, [], function (err, result) {
     //     console.log(result.rows, `${user.login}`);
     //     var baselogin;
