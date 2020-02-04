@@ -197,21 +197,22 @@ document.addEventListener("DOMContentLoaded", function () {
             }else {
                  responseLine = JSON.parse(this.response);
                 console.log(responseLine)
+                ctx.beginPath();
+                ctx.moveTo(responseLine[0].moveTo[0],  responseLine[0].moveTo[1]);
+                ctx.strokeStyle = "green";
+                ctx.lineWidth = 30;
+                var lineArr = responseLine[0].lineTo;
+                for(var i = 1; i < lineArr.length; i = i + 2){
+                    if(lineArr[i + 1] == undefined){
+                        return;
+                    }else {
+                        ctx.lineTo(lineArr[i], lineArr[i + 1]);
+                        ctx.stroke()
+                    }
+                }
 
             }
         }
     };
-    // ctx.beginPath();
-    // ctx.moveTo(allArr[0].moveTo[0],  allArr[0].moveTo[1]);
-    // ctx.strokeStyle = "green";
-    // ctx.lineWidth = 30;
-    // var lineArr = allArr[0].lineTo;
-    // for(var i = 1; i < lineArr.length; i = i + 2){
-    //     if(lineArr[i + 1] == undefined){
-    //         return;
-    //     }else {
-    //         ctx.lineTo(lineArr[i], lineArr[i + 1]);
-    //         ctx.stroke()
-    //     }
-    // }
+
 });
