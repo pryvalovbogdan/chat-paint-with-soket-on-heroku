@@ -166,11 +166,14 @@ document.getElementById("but").addEventListener("click", ()=>{
             ctx.stroke()
         }
     }
-    console.log({allArr})
+    //console.log({allArr})
+    var sendObj = {
+        allArr: allArr
+    }
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://stormy-refuge-28123.herokuapp.com/saveline");
     xhr.setRequestHeader("Content-type", "application/json");
-    xhr.send(JSON.stringify({allArr}));
+    xhr.send(JSON.stringify(sendObj));
     xhr.onload = function () {
         // if (xhr.status === 200 && xhr.readyState === 4) {
 
