@@ -130,6 +130,8 @@ console.log(r.root)
 
 //draws([2,5,6,1,3])
 
+
+let socket = new WebSocket("ws://radiant-earth-93466.herokuapp.com/");
 var paint = document.querySelector("#canvas1");
 var ctx = paint.getContext("2d");
 
@@ -145,7 +147,7 @@ inputColor.addEventListener("change",(e) => {
 
 var lineWidth = document.querySelector("#lineWidth");
 lineWidth.addEventListener("change", (e)=>{
-    ctx.lineWidth = e.target.value
+    ctx.lineWidth = e.target.value;
 });
 
 
@@ -153,15 +155,16 @@ paint.addEventListener("mousedown", (e)=>{
     draw = true;
     ctx.beginPath();
     ctx.moveTo(e.offsetX, e.offsetY);
+    socket.send("hello");
 
 });
 paint.addEventListener("mousemove", (e)=>{
 
     if(!draw) return;
-   // ctx.save();
+    // ctx.save();
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
-   // ctx.restore()
+    // ctx.restore()
 
 
 });
@@ -171,3 +174,8 @@ paint.addEventListener('mouseup', () => {
 paint.addEventListener('mouseout', () => draw = false);
 
 
+document.onload = function (e) {
+    socket.onmessage = function(e) {
+        console.log(e.data);
+    }
+}
