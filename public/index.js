@@ -185,3 +185,17 @@ document.getElementById("but").addEventListener("click", ()=>{
        }
     };
 });
+document.onload = function () {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://stormy-refuge-28123.herokuapp.com/getLine");
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.status === 200 && xhr.readyState === 4) {
+            if(this.response !== null) {
+                var x = JSON.parse(this.response);
+                console.log(x)
+            }
+
+        }
+    };
+}
