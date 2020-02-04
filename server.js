@@ -9,7 +9,7 @@ app.listen(PORT, function () {
 });
 
 var allArr;
-app.post("/", function (req, res) {
+app.post("/saveLine", function (req, res) {
 
     console.log(req.body)
 

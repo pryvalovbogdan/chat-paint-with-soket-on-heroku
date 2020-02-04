@@ -171,7 +171,7 @@ document.getElementById("but").addEventListener("click", ()=>{
         allArr: allArr
     }
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://stormy-refuge-28123.herokuapp.com/");
+    xhr.open("POST", "https://stormy-refuge-28123.herokuapp.com/saveLine");
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(sendObj));
     xhr.onload = function () {
