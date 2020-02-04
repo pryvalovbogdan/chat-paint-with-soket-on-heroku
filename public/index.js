@@ -185,6 +185,7 @@ document.getElementById("but").addEventListener("click", ()=>{
        }
     };
 });
+var responseLine;
 document.addEventListener("DOMContentLoaded", function () {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://stormy-refuge-28123.herokuapp.com/getLine");
@@ -192,13 +193,25 @@ document.addEventListener("DOMContentLoaded", function () {
     xhr.onreadystatechange = function () {
         if (xhr.status === 200 && xhr.readyState === 4) {
             if(Object.keys(this.response).length == 0) {
-                console.log(this.response)
-            }
-            // if(this.response !== {}) {
-            //     var x = JSON.parse(this.response);
-            //     console.log(x)
-            // }
+                return;
+            }else {
+                 responseLine = JSON.parse(this.response);
+                console.log(responseLine)
 
+            }
         }
     };
+    // ctx.beginPath();
+    // ctx.moveTo(allArr[0].moveTo[0],  allArr[0].moveTo[1]);
+    // ctx.strokeStyle = "green";
+    // ctx.lineWidth = 30;
+    // var lineArr = allArr[0].lineTo;
+    // for(var i = 1; i < lineArr.length; i = i + 2){
+    //     if(lineArr[i + 1] == undefined){
+    //         return;
+    //     }else {
+    //         ctx.lineTo(lineArr[i], lineArr[i + 1]);
+    //         ctx.stroke()
+    //     }
+    // }
 });
