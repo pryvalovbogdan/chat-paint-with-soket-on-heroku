@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
     xhr.send();
     xhr.onreadystatechange = function () {
         if (xhr.status === 200 && xhr.readyState === 4) {
-            if(this.response == undefined) {
+            if(Object.keys(this.response).length == 0) {
                 console.log(this.response)
             }
             // if(this.response !== {}) {
