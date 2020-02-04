@@ -86,10 +86,10 @@ BStree.prototype.addNode = function(node, value) {
     return node;
 };
 
-
-var r = new BStree()
-r.init([5,6,2,3,8,1])
-console.log(r.root)
+//
+// var r = new BStree()
+// r.init([5,6,2,3,8,1])
+// console.log(r.root)
 //
 //
 // function draws(arr) {
