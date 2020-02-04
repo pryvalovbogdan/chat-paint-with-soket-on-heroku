@@ -11,7 +11,6 @@ app.listen(PORT, function () {
 var allArr;
 app.post("/", function (req, res) {
 
-    allArr = req.body.allArr;
-    res.json(allArr);
+    console.log(req.body)
 
 });
