@@ -185,7 +185,7 @@ document.getElementById("but").addEventListener("click", ()=>{
        }
     };
 });
-document.onload = function () {
+document.addEventListener("onload", function () {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://stormy-refuge-28123.herokuapp.com/getLine");
     xhr.send();
@@ -198,4 +198,4 @@ document.onload = function () {
 
         }
     };
-}
+});
