@@ -176,9 +176,10 @@ document.getElementById("but").addEventListener("click", ()=>{
     xhr.send(JSON.stringify(sendObj));
     xhr.onreadystatechange = function () {
         if (xhr.status === 200 && xhr.readyState === 4) {
-
-           var x = JSON.parse(this.response);
-           console.log(x)
+            if(this.response !== null) {
+                var x = JSON.parse(this.response);
+                console.log(x)
+            }
 
        }
     };
