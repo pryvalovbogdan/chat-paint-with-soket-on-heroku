@@ -177,7 +177,7 @@ document.getElementById("but").addEventListener("click", ()=>{
     xhr.onreadystatechange = function () {
         if (xhr.status === 200 && xhr.readyState === 4) {
             if(this.response !== null) {
-                var x = JSON.parse(this.response);
+                var x = this.response;
                 console.log(x)
             }
 
