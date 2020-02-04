@@ -169,7 +169,7 @@ document.getElementById("but").addEventListener("click", ()=>{
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://stormy-refuge-28123.herokuapp.com/saveline");
     xhr.setRequestHeader("Content-type", "application/json");
-    xhr.send(JSON.stringify(allArr));
+    xhr.send(JSON.stringify({allArr}));
     xhr.onload = function () {
         // if (xhr.status === 200 && xhr.readyState === 4) {
 
