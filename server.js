@@ -1,20 +1,20 @@
 var express = require("express");
 var app = express();
 var path = require("path");
-
+const http = require("http")
 
 
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 const PORT =  process.env.PORT || 5000;
 
-
+const servers = http.createServer(app)
 const Websocket = require("ws");
-//const server = new Websocket.Server( {port:3000} )
+const server = new Websocket.Server( {servers} )
 
-// server.on("connection", ws => {
-//     ws.send("welcome")
-// })
+server.on("connection", ws => {
+    ws.send("welcome")
+})
 
 
 app.use(express.static(path.join(__dirname, 'public')));

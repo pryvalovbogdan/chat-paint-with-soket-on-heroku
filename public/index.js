@@ -170,18 +170,18 @@ document.getElementById("but").addEventListener("click", ()=>{
     };
 });
 var responseLine;
-// var ws = new WebSocket("ws://stormy-refuge-28123.herokuapp.com/");
-// ws.onopen = () => {
-//     console.log("online")
-// }
-//
-// ws.onclose = () =>{
-//     console.log("disconnected")
-// }
-//
-// ws.onmessage = (response) =>{
-//     console.log(response.data)
-// }
+var ws = new WebSocket("ws://stormy-refuge-28123.herokuapp.com/");
+ws.onopen = () => {
+    console.log("online")
+}
+
+ws.onclose = () =>{
+    console.log("disconnected")
+}
+
+ws.onmessage = (response) =>{
+    console.log(response.data)
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     var xhr = new XMLHttpRequest();
