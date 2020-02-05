@@ -16,7 +16,7 @@ ctx.lineCap = 'round';
 ctx.lineWidth = 10;
 var draw = false;
 clearCanvas = () => {
-    paint.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    paint.clearRect(0, 0, paint.width, paint.height);
 };
 clear.addEventListener("click", clearCanvas)
 inputColor.addEventListener("change",(e) => {
