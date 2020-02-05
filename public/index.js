@@ -156,7 +156,7 @@ document.getElementById("but").addEventListener("click", ()=>{
         allArr: allArr
     }
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://stormy-refuge-28123.herokuapp.com/saveLine");
+    xhr.open("POST", "http://localhost:5000/saveLine");
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(sendObj));
     xhr.onreadystatechange = function () {
@@ -170,22 +170,22 @@ document.getElementById("but").addEventListener("click", ()=>{
     };
 });
 var responseLine;
-var ws = new WebSocket("ws://stormy-refuge-28123.herokuapp.com/");
-ws.onopen = () => {
-    console.log("online")
-}
-
-ws.onclose = () =>{
-    console.log("disconnected")
-}
-
-ws.onmessage = (response) =>{
-    console.log(response.data)
-}
+// var ws = new WebSocket("ws://stormy-refuge-28123.herokuapp.com/");
+// ws.onopen = () => {
+//     console.log("online")
+// }
+//
+// ws.onclose = () =>{
+//     console.log("disconnected")
+// }
+//
+// ws.onmessage = (response) =>{
+//     console.log(response.data)
+// }
 
 document.addEventListener("DOMContentLoaded", function () {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://stormy-refuge-28123.herokuapp.com/getLine");
+    xhr.open("GET", "http://localhost:5000/getLine");
     xhr.send();
     xhr.onreadystatechange = function () {
         if (xhr.status === 200 && xhr.readyState === 4) {
@@ -213,3 +213,41 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 });
+
+var massage = document.getElementById("massage"),
+    handle = document.getElementById("handle"),
+    btn = document.getElementById("send"),
+    output = document.getElementById("output")
+    get = document.getElementById("get")
+var socket = io.connect("http://localhost:5000/")
+
+btn.addEventListener("click", function () {
+    socket.emit("chat",{
+        massage:massage.value,
+        handle:handle.value
+    })
+})
+
+get.addEventListener("click",function () {
+    socket.emit("line",
+        JSON.stringify(allArr)
+    )
+})
+socket.on('chat', function (data) {
+    output.innerHTML += "<p>"+ data.handle + " :" +data.massage + "</p>"
+})
+socket.on('line', function (data) {
+    console.log(JSON.parse(JSON.parse(data)))
+    output.innerHTML += "<p>"+JSON.parse(data) + "</p>"
+})
+
+
+
+
+
+
+
+
+
+
+
