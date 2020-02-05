@@ -6,7 +6,7 @@ var obj = {
     color: "black",
     lineWidth:10,
     moveTo:[],
-    line:[]
+    line:[2]
 };
 var allArr = [];
 var paint = document.querySelector("#canvas1");
@@ -36,7 +36,7 @@ paint.addEventListener("mousedown", (e)=>{
         moveTo:[e.offsetX, e.offsetY],
     };
 });
-obj.lineTo = [];
+
 paint.addEventListener("mousemove", (e)=>{
     if(!draw) return;
     ctx.lineTo(e.offsetX, e.offsetY);
