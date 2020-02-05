@@ -156,7 +156,7 @@ document.getElementById("but").addEventListener("click", ()=>{
         allArr: allArr
     }
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:5000/saveLine");
+    xhr.open("POST", "https://stormy-refuge-28123.herokuapp.com/saveLine");
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(sendObj));
     xhr.onreadystatechange = function () {
@@ -185,7 +185,7 @@ var responseLine;
 
 document.addEventListener("DOMContentLoaded", function () {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:5000/getLine");
+    xhr.open("GET", "https://stormy-refuge-28123.herokuapp.com/getLine");
     xhr.send();
     xhr.onreadystatechange = function () {
         if (xhr.status === 200 && xhr.readyState === 4) {
