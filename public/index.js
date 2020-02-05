@@ -19,14 +19,12 @@ var draw = false;
 
 
 inputColor.addEventListener("change",(e) => {
-    ctx.strokeStyle = this.value;
-    console.log(this.value, e.target.value)
-    console.log(ctx.strokeStyle)
+    ctx.strokeStyle = e.target.value;
 });
 
 
 lineWidth.addEventListener("change", (e)=>{
-    ctx.lineWidth = this.value;
+    ctx.lineWidth = e.target.value;
 });
 
 
