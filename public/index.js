@@ -43,7 +43,7 @@ paint.addEventListener("mousemove", (e)=>{
     console.log(e)
     ctx.lineTo(e.offsetX, e.offsetY);
 
-    console.log(obj.line)
+    obj.line = [];
     obj.line.push(e.offsetX, e.offsetY);
     ctx.stroke();
 });
