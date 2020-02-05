@@ -5,9 +5,8 @@ body{
 .wrapper{
     height: 100vh;
     display: flex;
-    justify-content: center;
+    ustify-content: space-around;
     align-items: center;
-    flex-direction: column;
     background-image: radial-gradient(circle, #509dd2, #9989cf, #d170a3, #db6b61, #b57f24);
 }
 chat-wrapper{
