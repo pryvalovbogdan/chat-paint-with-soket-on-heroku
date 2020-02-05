@@ -72,7 +72,7 @@ btn.addEventListener("click", function () {
 
 socket.on('chat', function (data) {
 
-    output.innerHTML += `<p style = "color:${getRandomColor}">`+ data.handle + " :" +data.massage + "</p>"
+    output.innerHTML += `<p style = "color:${getRandomColor()}">`+ data.handle + " :" +data.massage + "</p>"
 })
 socket.on('line', function (data) {
     let lineObj = JSON.parse(JSON.parse(data))
