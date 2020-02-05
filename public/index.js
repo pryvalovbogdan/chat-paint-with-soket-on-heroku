@@ -245,16 +245,18 @@ socket.on('line', function (data) {
 
 drawLine = (obj) => {
     ctx.beginPath();
-    ctx.moveTo(obj[0].moveTo[0],  obj[0].moveTo[1]);
-    ctx.strokeStyle = obj[0].color;
-    ctx.lineWidth = 10;
-    var lineArr = obj[0].lineTo;
-    for(var i = 1; i < lineArr.length; i = i + 2){
-        if(lineArr[i + 1] == undefined){
-            return;
-        }else {
-            ctx.lineTo(lineArr[i], lineArr[i + 1]);
-            ctx.stroke()
+    for(let i = 0 ; i < obj.length; i++) {
+        ctx.moveTo(obj[i].moveTo[i], obj[i].moveTo[i+1]);
+        ctx.strokeStyle = obj[i].color;
+        ctx.lineWidth = 10;
+        var lineArr = obj[i].lineTo;
+        for (var j = 1; j < lineArr.length; j = j + 2) {
+            if (lineArr[j + 1] == undefined) {
+                return;
+            } else {
+                ctx.lineTo(lineArr[j], lineArr[j + 1]);
+                ctx.stroke()
+            }
         }
     }
 }
