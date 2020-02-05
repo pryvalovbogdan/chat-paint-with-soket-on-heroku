@@ -46,6 +46,8 @@ chat-wrapper{
     outline: none;
     border-bottom: 2px solid #3399ff;
     transition-duration: 0.8s;
+    width: 96%;
+
 }
 .custom-input:focus {
      background-color: #4CAF50;
