@@ -41,6 +41,7 @@ paint.addEventListener("mousemove", (e)=>{
     if(!draw) return;
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
+    console.log(obj, obj.lineTo)
     obj.color = ctx.strokeStyle;
     obj.lineWidth = ctx.lineWidth;
     obj.lineTo.push(e.offsetX, e.offsetY);
