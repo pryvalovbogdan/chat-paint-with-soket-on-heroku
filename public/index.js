@@ -6,7 +6,7 @@ var obj = {
     color: "black",
     lineWidth:10,
     moveTo:[],
-    lineTo:[]
+    lineTo:[2]
 };
 var allArr = [];
 var paint = document.querySelector("#canvas1");
