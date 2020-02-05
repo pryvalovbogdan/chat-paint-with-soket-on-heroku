@@ -6,7 +6,7 @@ var obj = {
     color: "black",
     lineWidth:10,
     moveTo:[],
-    lineTo:[2]
+    line:[2],
 };
 var allArr = [];
 var paint = document.querySelector("#canvas1");
@@ -41,7 +41,7 @@ paint.addEventListener("mousemove", (e)=>{
     if(!draw) return;
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
-    console.log(obj, obj.lineTo)
+    console.log(obj, obj.line)
     obj.color = ctx.strokeStyle;
     obj.lineWidth = ctx.lineWidth;
     obj.lineTo.push(e.offsetX, e.offsetY);
