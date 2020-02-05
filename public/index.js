@@ -1,4 +1,7 @@
-var socket = io.connect("https://stormy-refuge-28123.herokuapp.com/")
+var socket = io.connect("https://stormy-refuge-28123.herokuapp.com/");
+
+var inputColor = document.querySelector("#color");
+var lineWidth = document.querySelector("#lineWidth");
 var obj = {
     color: "black",
     lineWidth:10,
@@ -14,14 +17,14 @@ ctx.lineCap = 'round';
 ctx.lineWidth = 10;
 var draw = false;
 
-var inputColor =document.querySelector("INPUT");
+
 inputColor.addEventListener("change",(e) => {
     ctx.strokeStyle = this.value;
     console.log(this.value, e.target.value)
     console.log(ctx.strokeStyle)
 });
 
-var lineWidth = document.querySelector("#lineWidth");
+
 lineWidth.addEventListener("change", (e)=>{
     ctx.lineWidth = this.value;
 });
