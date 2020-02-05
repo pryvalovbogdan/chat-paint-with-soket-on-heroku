@@ -219,7 +219,7 @@ var massage = document.getElementById("massage"),
     btn = document.getElementById("send"),
     output = document.getElementById("output")
     get = document.getElementById("get")
-var socket = io.connect("http://localhost:5000/")
+var socket = io.connect("https://stormy-refuge-28123.herokuapp.com/")
 
 btn.addEventListener("click", function () {
     socket.emit("chat",{
