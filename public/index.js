@@ -2,8 +2,8 @@ var socket = io.connect("https://stormy-refuge-28123.herokuapp.com/")
 var obj = {
     color: "black",
     lineWidth:10,
-    moveTo:[1],
-    lineTo:[2]
+    moveTo:[],
+    lineTo:[]
 };
 var allArr = [];
 var responseLine;
