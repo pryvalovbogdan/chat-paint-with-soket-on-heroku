@@ -10,13 +10,15 @@ var obj = {
 var allArr = [];
 var paint = document.querySelector("#canvas1");
 var ctx = paint.getContext("2d");
-
+var clear = document.getElementById("clear")
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
 ctx.lineWidth = 10;
 var draw = false;
-
-
+clearCanvas =() => {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+}
+clear.addEventListener("click", clearCanvas)
 inputColor.addEventListener("change",(e) => {
     ctx.strokeStyle = e.target.value;
 });
@@ -59,8 +61,7 @@ paint.addEventListener('mouseout', () => draw = false);
 var massage = document.getElementById("massage"),
     handle = document.getElementById("handle"),
     btn = document.getElementById("send"),
-    output = document.getElementById("output")
-    get = document.getElementById("get")
+    output = document.getElementById("output");
 
 
 btn.addEventListener("click", function () {
@@ -74,10 +75,9 @@ btn.addEventListener("click", function () {
 socket.on('chat', function (data) {
 
     output.innerHTML += `<p style = "color:${getRandomColor()}">`+ data.handle + " :" +data.massage + "</p>"
-})
+});
 socket.on('line', function (data) {
-    let lineObj = JSON.parse(JSON.parse(data))
-    console.log(lineObj)
+    let lineObj = JSON.parse(JSON.parse(data));
     drawLine(lineObj)
 });
 
