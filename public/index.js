@@ -15,9 +15,9 @@ ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
 ctx.lineWidth = 10;
 var draw = false;
-clearCanvas =() => {
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-}
+clearCanvas = () => {
+    paint.clearRect(0, 0, this.canvas.width, this.canvas.height);
+};
 clear.addEventListener("click", clearCanvas)
 inputColor.addEventListener("change",(e) => {
     ctx.strokeStyle = e.target.value;
