@@ -10,11 +10,11 @@ const PORT =  process.env.PORT || 5000;
 
 
 const Websocket = require("ws");
-const server = new Websocket.Server({  port: PORT })
+//const server = new Websocket.Server( {port:3000} )
 
-server.on("connection", ws => {
-    ws.send("welcome")
-})
+// server.on("connection", ws => {
+//     ws.send("welcome")
+// })
 
 
 app.use(express.static(path.join(__dirname, 'public')));
