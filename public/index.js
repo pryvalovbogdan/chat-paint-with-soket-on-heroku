@@ -1,6 +1,7 @@
 var socket = io.connect("https://stormy-refuge-28123.herokuapp.com/")
 var obj = {
     color: "black",
+    lineWidth:10,
     moveTo:[1],
     lineTo:[2]
 };
@@ -17,11 +18,13 @@ var draw = false;
 var inputColor =document.querySelector("INPUT");
 inputColor.addEventListener("change",(e) => {
     ctx.strokeStyle = e.target.value;
+    obj.color = e.target.value;
 });
 
 var lineWidth = document.querySelector("#lineWidth");
 lineWidth.addEventListener("change", (e)=>{
     ctx.lineWidth = e.target.value;
+    obj.lineWidth = e.target.value;
 });
 
 
@@ -30,22 +33,15 @@ paint.addEventListener("mousedown", (e)=>{
     ctx.beginPath();
     ctx.moveTo(e.offsetX, e.offsetY);
     obj = {
-        color: "black",
         moveTo:[e.offsetX, e.offsetY],
-        lineTo:[2]
     };
 
 });
 paint.addEventListener("mousemove", (e)=>{
-
     if(!draw) return;
-    // ctx.save();
     ctx.lineTo(e.offsetX, e.offsetY);
     obj.lineTo.push(e.offsetX, e.offsetY)
     ctx.stroke();
-    // ctx.restore()
-
-
 });
 paint.addEventListener('mouseup', () => {
     draw = false;
@@ -85,11 +81,11 @@ socket.on('line', function (data) {
 drawLine = (obj) => {
     for(let i = 0 ; i < obj.length; i++) {
         ctx.beginPath();
-        ctx.moveTo(obj[i].moveTo[i], obj[i].moveTo[i+1])
+        ctx.moveTo(obj[i].moveTo[i], obj[i].moveTo[i+1]);
         ctx.strokeStyle = obj[i].color;
-        ctx.lineWidth = 10;
+        ctx.lineWidth = obj[i].lineWidth;
         var lineArr = obj[i].lineTo;
-        for (var j = 1; j < lineArr.length; j = j + 2) {
+        for (var j = 0; j < lineArr.length; j = j + 2) {
             if (lineArr[j + 1] == undefined) {
                 return;
             } else {
