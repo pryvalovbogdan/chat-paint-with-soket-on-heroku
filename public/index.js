@@ -48,8 +48,8 @@ paint.addEventListener("mousemove", (e)=>{
 paint.addEventListener('mouseup', () => {
     draw = false;
     allArr.push(obj);
+    console.log(allArr)
     socket.emit("line",
-        console.log(obj)
         JSON.stringify(allArr)
     )
 });
