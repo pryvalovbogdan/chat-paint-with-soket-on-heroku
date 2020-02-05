@@ -36,13 +36,13 @@ paint.addEventListener("mousedown", (e)=>{
         moveTo:[e.offsetX, e.offsetY],
     };
 });
+obj.lineTo = [];
 paint.addEventListener("mousemove", (e)=>{
     if(!draw) return;
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
     obj.color = ctx.strokeStyle;
     obj.lineWidth = ctx.lineWidth;
-    obj.lineTo = [];
     obj.lineTo.push(e.offsetX, e.offsetY);
 });
 paint.addEventListener('mouseup', () => {
