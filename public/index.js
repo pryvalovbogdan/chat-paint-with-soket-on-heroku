@@ -17,6 +17,7 @@ ctx.lineWidth = 10;
 var draw = false;
 clearCanvas = () => {
     ctx.clearRect(0, 0, paint.width, paint.height);
+    allArr = [];
 };
 clear.addEventListener("click", clearCanvas)
 inputColor.addEventListener("change",(e) => {
