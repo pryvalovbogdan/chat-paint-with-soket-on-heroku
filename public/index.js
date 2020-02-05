@@ -183,36 +183,36 @@ var responseLine;
 //     console.log(response.data)
 // }
 
-document.addEventListener("DOMContentLoaded", function () {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://stormy-refuge-28123.herokuapp.com/getLine");
-    xhr.send();
-    xhr.onreadystatechange = function () {
-        if (xhr.status === 200 && xhr.readyState === 4) {
-            if(Object.keys(this.response).length == 0) {
-                return;
-            }else {
-                responseLine = JSON.parse(this.response);
-                console.log(responseLine)
-                ctx.beginPath();
-                ctx.moveTo(responseLine[0].moveTo[0],  responseLine[0].moveTo[1]);
-                ctx.strokeStyle = responseLine[0].color;
-                ctx.lineWidth = 10;
-                var lineArr = responseLine[0].lineTo;
-                for(var i = 1; i < lineArr.length; i = i + 2){
-                    if(lineArr[i + 1] == undefined){
-                        return;
-                    }else {
-                        ctx.lineTo(lineArr[i], lineArr[i + 1]);
-                        ctx.stroke()
-                    }
-                }
-
-            }
-        }
-    };
-
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//     var xhr = new XMLHttpRequest();
+//     xhr.open("GET", "https://stormy-refuge-28123.herokuapp.com/getLine");
+//     xhr.send();
+//     xhr.onreadystatechange = function () {
+//         if (xhr.status === 200 && xhr.readyState === 4) {
+//             if(Object.keys(this.response).length == 0) {
+//                 return;
+//             }else {
+//                 responseLine = JSON.parse(this.response);
+//                 console.log(responseLine)
+//                 ctx.beginPath();
+//                 ctx.moveTo(responseLine[0].moveTo[0],  responseLine[0].moveTo[1]);
+//                 ctx.strokeStyle = responseLine[0].color;
+//                 ctx.lineWidth = 10;
+//                 var lineArr = responseLine[0].lineTo;
+//                 for(var i = 1; i < lineArr.length; i = i + 2){
+//                     if(lineArr[i + 1] == undefined){
+//                         return;
+//                     }else {
+//                         ctx.lineTo(lineArr[i], lineArr[i + 1]);
+//                         ctx.stroke()
+//                     }
+//                 }
+//
+//             }
+//         }
+//     };
+//
+// });
 
 var massage = document.getElementById("massage"),
     handle = document.getElementById("handle"),
@@ -237,11 +237,27 @@ socket.on('chat', function (data) {
     output.innerHTML += "<p>"+ data.handle + " :" +data.massage + "</p>"
 })
 socket.on('line', function (data) {
-    console.log(JSON.parse(JSON.parse(data)))
-    output.innerHTML += "<p>"+JSON.parse(data) + "</p>"
-})
+    let lineObj = JSON.parse(JSON.parse(data))
+    console.log(lineObj)
+    drawLine(lineObj)
+});
 
 
+drawLine = (obj) => {
+    ctx.beginPath();
+    ctx.moveTo(obj[0].moveTo[0],  obj[0].moveTo[1]);
+    ctx.strokeStyle = obj[0].color;
+    ctx.lineWidth = 10;
+    var lineArr = obj[0].lineTo;
+    for(var i = 1; i < lineArr.length; i = i + 2){
+        if(lineArr[i + 1] == undefined){
+            return;
+        }else {
+            ctx.lineTo(lineArr[i], lineArr[i + 1]);
+            ctx.stroke()
+        }
+    }
+}
 
 
 

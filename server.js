@@ -29,7 +29,6 @@ io.on("connection", function (socket) {
         io.sockets.emit("chat", data)
     })
     socket.on("line", function (data) {
-
         io.sockets.emit("line", JSON.stringify(data))
 
     })
