@@ -17,15 +17,11 @@ var draw = false;
 var inputColor =document.querySelector("INPUT");
 inputColor.addEventListener("change",(e) => {
     ctx.strokeStyle = e.target.value;
-    obj.color = e.target.value;
-    console.log(obj)
 });
 
 var lineWidth = document.querySelector("#lineWidth");
 lineWidth.addEventListener("change", (e)=>{
     ctx.lineWidth = e.target.value;
-    obj.lineWidth = e.target.value;
-    console.log(obj)
 });
 
 
@@ -36,7 +32,6 @@ paint.addEventListener("mousedown", (e)=>{
     obj = {
         moveTo:[e.offsetX, e.offsetY],
     };
-    console.log(obj)
 });
 paint.addEventListener("mousemove", (e)=>{
     if(!draw) return;
