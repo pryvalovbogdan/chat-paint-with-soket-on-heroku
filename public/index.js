@@ -49,6 +49,7 @@ paint.addEventListener('mouseup', () => {
     draw = false;
     allArr.push(obj);
     socket.emit("line",
+        console.log(obj)
         JSON.stringify(allArr)
     )
 });
