@@ -29,4 +29,42 @@ chat-wrapper{
 }
 .output{
     background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    align-items: center;
 }
+.chat-wrapper{
+    width: 20%;
+}
+.custom-input{
+    padding: 7px;
+    border:none;
+    opacity: 0.7;
+    outline: none;
+    border-bottom: 2px solid #3399ff;
+    transition-duration: 0.8s;
+}
+.custom-input:focus {
+     background-color: #4CAF50;
+     color: white;
+     border-bottom: 2px solid #9900cc;
+ }
+.custom-button {
+    padding: 5px;
+    background-color: #9900cc;
+    color: white;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    font-size: 15px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.custom-button:hover {
+     background-color: #4CAF50;
+     color: #9900cc;
+ }
