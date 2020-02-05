@@ -244,8 +244,8 @@ socket.on('line', function (data) {
 
 
 drawLine = (obj) => {
-    ctx.beginPath();
     for(let i = 0 ; i < obj.length; i++) {
+        ctx.beginPath();
         ctx.moveTo(obj[i].moveTo[i], obj[i].moveTo[i+1])
         ctx.strokeStyle = obj[i].color;
         ctx.lineWidth = 10;
@@ -259,7 +259,6 @@ drawLine = (obj) => {
             }
         }
     }
-    ctx.closePath()
 }
 
 
