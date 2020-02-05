@@ -6,7 +6,6 @@ var obj = {
     color: "black",
     lineWidth:10,
     moveTo:[],
-    line:[2],
 };
 var allArr = [];
 var paint = document.querySelector("#canvas1");
@@ -34,14 +33,16 @@ paint.addEventListener("mousedown", (e)=>{
     ctx.moveTo(e.offsetX, e.offsetY);
     obj = {
         moveTo:[e.offsetX, e.offsetY],
+        lineTo:[],
+
     };
 });
-
+var arr = []
 paint.addEventListener("mousemove", (e)=>{
     if(!draw) return;
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
-    console.log(obj, obj.line)
+    console.log(obj, obj.lineTo)
     obj.color = ctx.strokeStyle;
     obj.lineWidth = ctx.lineWidth;
     obj.lineTo.push(e.offsetX, e.offsetY);
