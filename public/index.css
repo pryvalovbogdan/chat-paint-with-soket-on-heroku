@@ -27,3 +27,6 @@ chat-wrapper{
     justify-content: center;
     align-items: center;
 }
+.output{
+    background: black;
+}

@@ -88,6 +88,7 @@ drawLine = (obj) => {
         ctx.strokeStyle = obj[i].color;
         ctx.lineWidth = obj[i].lineWidth;
         var lineArr = obj[i].lineTo;
+        if(lineArr === undefined)return;
         for (var j = 0; j < lineArr.length; j = j + 2) {
             if (lineArr[j + 1] == undefined) {
                 return;
