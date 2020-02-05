@@ -256,6 +256,7 @@ drawLine = (obj) => {
             } else {
                 ctx.lineTo(lineArr[j], lineArr[j + 1]);
                 ctx.stroke()
+                ctx.closePath()
             }
         }
     }
