@@ -23,7 +23,8 @@
   "dependencies": {
     "ejs": "^2.5.6",
     "express": "^4.15.2",
-    "body-parser": "latest"
+    "body-parser": "latest",
+    "ws": "^7.2.1"
   },
   "devDependencies": {
     "ws": "^7.2.1"
