@@ -38,13 +38,12 @@ paint.addEventListener("mousedown", (e)=>{
 });
 paint.addEventListener("mousemove", (e)=>{
     if(!draw) return;
-    console.log(ctx.strokeStyle)
     ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
     obj.color = ctx.strokeStyle;
     obj.lineWidth = ctx.lineWidth;
     obj.lineTo = [];
     obj.lineTo.push(e.offsetX, e.offsetY);
-    ctx.stroke();
 });
 paint.addEventListener('mouseup', () => {
     draw = false;
@@ -72,7 +71,8 @@ btn.addEventListener("click", function () {
 
 
 socket.on('chat', function (data) {
-    output.innerHTML += "<p>"+ data.handle + " :" +data.massage + "</p>"
+
+    output.innerHTML += `<p style = "color:${getRandomColor}">`+ data.handle + " :" +data.massage + "</p>"
 })
 socket.on('line', function (data) {
     let lineObj = JSON.parse(JSON.parse(data))
@@ -100,7 +100,14 @@ drawLine = (obj) => {
 }
 
 
-
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
 
 
