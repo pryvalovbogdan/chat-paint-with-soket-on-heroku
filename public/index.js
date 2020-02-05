@@ -16,13 +16,14 @@ var draw = false;
 
 var inputColor =document.querySelector("INPUT");
 inputColor.addEventListener("change",(e) => {
-    ctx.strokeStyle = e.target.value;
+    ctx.strokeStyle = this.value;
+    console.log(this.value, e.target.value)
     console.log(ctx.strokeStyle)
 });
 
 var lineWidth = document.querySelector("#lineWidth");
 lineWidth.addEventListener("change", (e)=>{
-    ctx.lineWidth = e.target.value;
+    ctx.lineWidth = this.value;
 });
 
 
