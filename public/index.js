@@ -30,6 +30,7 @@ lineWidth.addEventListener("change", (e)=>{
 
 
 paint.addEventListener("mousedown", (e)=>{
+    console.log("mose", e)
     draw = true;
     ctx.beginPath();
     ctx.moveTo(e.offsetX, e.offsetY);
@@ -38,7 +39,8 @@ paint.addEventListener("mousedown", (e)=>{
         lineTo:[],
     };
 });
-paint.addEventListener("touchstart", (e)=>{
+paint.addEventListener("touchstart", (e) => {
+    console.log(e)
     e.preventDefault();
     draw = true;
     ctx.beginPath();
