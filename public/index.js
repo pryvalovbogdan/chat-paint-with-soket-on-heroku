@@ -15,8 +15,6 @@ window.addEventListener("load", () => {
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
     let draw = false;
-
-
     let massage = document.getElementById("massage"),
         handle = document.getElementById("handle"),
         btn = document.getElementById("send"),
@@ -32,11 +30,9 @@ window.addEventListener("load", () => {
         ctx.strokeStyle = e.target.value;
     });
 
-
     lineWidth.addEventListener("change", (e) => {
         ctx.lineWidth = e.target.value;
     });
-
 
     paint.addEventListener("mousedown", (e) => {
         draw = true;
@@ -69,6 +65,7 @@ window.addEventListener("load", () => {
         obj.lineWidth = ctx.lineWidth;
         obj.lineTo.push(e.offsetX, e.offsetY);
     });
+
     paint.addEventListener("touchmove", (e) => {
         if (!draw) return;
         let r = paint.getBoundingClientRect();
@@ -88,6 +85,7 @@ window.addEventListener("load", () => {
             JSON.stringify(allArr)
         )
     });
+
     paint.addEventListener('touchend', (e) => {
         draw = false;
         allArr.push(obj);
@@ -95,7 +93,9 @@ window.addEventListener("load", () => {
             JSON.stringify(allArr)
         )
     });
+
     paint.addEventListener('mouseout', () => draw = false);
+
     paint.addEventListener('touchcancel', () => draw = false);
 
     btn.addEventListener("click", function () {
@@ -105,16 +105,14 @@ window.addEventListener("load", () => {
         })
     });
 
-
     socket.on('chat', (data) => {
-
         output.innerHTML += `<p style = "color:${getRandomColor()}">` + data.handle + " :" + data.massage + "</p>"
     });
+
     socket.on('line', (data) => {
         let lineObj = JSON.parse(JSON.parse(data));
         drawLine(lineObj)
     });
-
 
     drawLine = (obj) => {
         for (let i = 0; i < obj.length; i++) {
@@ -143,7 +141,6 @@ window.addEventListener("load", () => {
         }
         return color;
     }
-
 });
 
 
