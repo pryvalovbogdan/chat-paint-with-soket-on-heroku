@@ -39,13 +39,17 @@ paint.addEventListener("mousedown", (e)=>{
         lineTo:[],
     };
 });
+
 paint.addEventListener("touchstart", (e) => {
     console.log(e)
     // e.preventDefault();
-    console.log(e.touches[0].clientX, e.pageX, e.offsetX, e.changedTouches.clientX)
+    let r = paint.getBoundingClientRect();
+    var currX = e.touches[0].clientX - r.left;
+     var currY = e.touches[0].clientY - r.top;
+    console.log(e.touches[0].clientX, currX, currY)
     draw = true;
     ctx.beginPath();
-    ctx.moveTo(e.touches[0].clientX, e.touches[0].clientY);
+    ctx.moveTo(currX, currY);
     obj = {
         moveTo:[e.touches[0].clientX, e.touches[0].clientY],
         lineTo:[],
@@ -61,13 +65,16 @@ paint.addEventListener("mousemove", (e) => {
     obj.lineTo.push(e.offsetX, e.offsetY);
 });
 paint.addEventListener("touchmove", (e) => {
+    let r = paint.getBoundingClientRect();
+    var currX = e.touches[0].clientX - r.left;
+    var currY = e.touches[0].clientY - r.top;
     // e.preventDefault();
     if(!draw) return;
-    ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY);
+    ctx.lineTo(currX, currY);
     ctx.stroke();
     obj.color = ctx.strokeStyle;
     obj.lineWidth = ctx.lineWidth;
-    obj.lineTo.push(e.touches[0].clientX, e.touches[0].clientY);
+    obj.lineTo.push(currX, currY);
 });
 
 paint.addEventListener('mouseup', (e) => {
