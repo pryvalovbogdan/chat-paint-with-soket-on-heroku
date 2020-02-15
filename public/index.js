@@ -42,7 +42,7 @@ paint.addEventListener("mousedown", (e)=>{
 paint.addEventListener("touchstart", (e) => {
     console.log(e)
     // e.preventDefault();
-    console.log(e.clientX, e.pageX, e.offsetX)
+    console.log(e.touches.clientX, e.pageX, e.offsetX, e.changedTouches.clientX)
     draw = true;
     ctx.beginPath();
     ctx.moveTo(e.clientX, e.clientY);
