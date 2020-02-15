@@ -23,7 +23,7 @@ window.onload = ()=>{
         btn = document.getElementById("send"),
         output = document.getElementById("output");
 
-});
+};
 
 clear.addEventListener("click", () => {
     ctx.clearRect(0, 0, paint.width, paint.height);
