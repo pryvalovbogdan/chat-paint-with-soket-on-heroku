@@ -39,7 +39,7 @@ paint.addEventListener("mousedown", (e)=>{
     };
 });
 paint.addEventListener("touchstart", (e)=>{
-
+    e.preventDefault();
     draw = true;
     ctx.beginPath();
     ctx.moveTo(e.offsetX, e.offsetY);
@@ -49,7 +49,7 @@ paint.addEventListener("touchstart", (e)=>{
     };
 });
 
-paint.addEventListener("mousemove", (e)=>{
+paint.addEventListener("mousemove", (e) => {
     if(!draw) return;
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
@@ -57,7 +57,8 @@ paint.addEventListener("mousemove", (e)=>{
     obj.lineWidth = ctx.lineWidth;
     obj.lineTo.push(e.offsetX, e.offsetY);
 });
-paint.addEventListener("touchmove", (e)=>{
+paint.addEventListener("touchmove", (e) => {
+    e.preventDefault();
     if(!draw) return;
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
@@ -74,6 +75,7 @@ paint.addEventListener('mouseup', (e) => {
     )
 });
 paint.addEventListener('touchend', (e) => {
+    e.preventDefault();
     draw = false;
     allArr.push(obj);
     socket.emit("line",
@@ -81,7 +83,10 @@ paint.addEventListener('touchend', (e) => {
     )
 });
 paint.addEventListener('mouseout', () => draw = false);
-paint.addEventListener('touchcancel', () => draw = false);
+paint.addEventListener('touchcancel', (e) => {
+    e.preventDefault();
+    draw = false
+});
 
 var massage = document.getElementById("massage"),
     handle = document.getElementById("handle"),
