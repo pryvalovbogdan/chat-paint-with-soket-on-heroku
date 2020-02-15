@@ -16,7 +16,6 @@ let server = app.listen(PORT, function () {
 
 let io = socket(server);
 io.on("connection", function (socket) {
-        console.log("socket connection", socket.id)
     socket.on("chat", function (data) {
         io.sockets.emit("chat", data)
     });
@@ -29,7 +28,6 @@ io.on("connection", function (socket) {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.post("/saveLine", function (req, res) {
-    console.log(req.body.allArr)
     allArr = req.body.allArr;
 
     res.json(allArr)

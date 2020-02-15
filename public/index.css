@@ -17,10 +17,8 @@ chat-wrapper{
     width: 30%;
 }
 .canvas{
-
     background: #50D2CC;
     border: 1px solid black;
-
 }
 .settings-wrapper{
     display: flex;
