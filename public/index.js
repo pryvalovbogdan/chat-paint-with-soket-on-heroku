@@ -1,5 +1,5 @@
 
-document.addEventListener("DOMcontentloaded", ()=> {
+document.addEventListener("load", () => {
     var socket = io.connect("https://stormy-refuge-28123.herokuapp.com/");
 
     var inputColor = document.querySelector("#color");
