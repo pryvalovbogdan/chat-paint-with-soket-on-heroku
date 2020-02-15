@@ -1,24 +1,34 @@
-var socket = io.connect("https://stormy-refuge-28123.herokuapp.com/");
 
-var inputColor = document.querySelector("#color");
-var lineWidth = document.querySelector("#lineWidth");
-var obj = {
-    color: "black",
-    lineWidth:10,
-    moveTo:[],
-};
-var allArr = [];
-var paint = document.querySelector("#canvas1");
-var ctx = paint.getContext("2d");
-var clear = document.getElementById("clear");
-ctx.lineJoin = 'round';
-ctx.lineCap = 'round';
-var draw = false;
-clearCanvas = () => {
+document.addEventListener("DOMcontentloaded",()=>{
+    var socket = io.connect("https://stormy-refuge-28123.herokuapp.com/");
+
+    var inputColor = document.querySelector("#color");
+    var lineWidth = document.querySelector("#lineWidth");
+    var obj = {
+        color: "black",
+        lineWidth:10,
+        moveTo:[],
+    };
+    var allArr = [];
+    var paint = document.querySelector("#canvas1");
+    var ctx = paint.getContext("2d");
+    var clear = document.getElementById("clear");
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    var draw = false;
+
+
+    var massage = document.getElementById("massage"),
+        handle = document.getElementById("handle"),
+        btn = document.getElementById("send"),
+        output = document.getElementById("output");
+
+});
+
+clear.addEventListener("click", () => {
     ctx.clearRect(0, 0, paint.width, paint.height);
     allArr = [];
-};
-clear.addEventListener("click", clearCanvas);
+});
 inputColor.addEventListener("change",(e) => {
     ctx.strokeStyle = e.target.value;
 });
@@ -40,10 +50,10 @@ paint.addEventListener("mousedown", (e)=>{
 });
 
 paint.addEventListener("touchstart", (e) => {
+    draw = true;
     let r = paint.getBoundingClientRect();
     var currX = e.touches[0].clientX - r.left;
-     var currY = e.touches[0].clientY - r.top;
-    draw = true;
+    var currY = e.touches[0].clientY - r.top;
     ctx.beginPath();
     ctx.moveTo(currX, currY);
     obj = {
@@ -61,10 +71,10 @@ paint.addEventListener("mousemove", (e) => {
     obj.lineTo.push(e.offsetX, e.offsetY);
 });
 paint.addEventListener("touchmove", (e) => {
-    let r = paint.getBoundingClientRect();
-    var currX = e.touches[0].clientX - r.left;
-    var currY = e.touches[0].clientY - r.top;
     if(!draw) return;
+    let r = paint.getBoundingClientRect();
+    let currX = e.touches[0].clientX - r.left;
+    let currY = e.touches[0].clientY - r.top;
     ctx.lineTo(currX, currY);
     ctx.stroke();
     obj.color = ctx.strokeStyle;
@@ -89,12 +99,6 @@ paint.addEventListener('touchend', (e) => {
 paint.addEventListener('mouseout', () => draw = false);
 paint.addEventListener('touchcancel', () => draw = false);
 
-var massage = document.getElementById("massage"),
-    handle = document.getElementById("handle"),
-    btn = document.getElementById("send"),
-    output = document.getElementById("output");
-
-
 btn.addEventListener("click", function () {
     socket.emit("chat",{
         massage:massage.value,
@@ -103,11 +107,11 @@ btn.addEventListener("click", function () {
 });
 
 
-socket.on('chat', function (data) {
+socket.on('chat',  (data) => {
 
     output.innerHTML += `<p style = "color:${getRandomColor()}">`+ data.handle + " :" +data.massage + "</p>"
 });
-socket.on('line', function (data) {
+socket.on('line',  (data) => {
     let lineObj = JSON.parse(JSON.parse(data));
     drawLine(lineObj)
 });
@@ -130,7 +134,7 @@ drawLine = (obj) => {
             }
         }
     }
-}
+};
 
 
 function getRandomColor() {
