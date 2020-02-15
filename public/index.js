@@ -41,7 +41,8 @@ paint.addEventListener("mousedown", (e)=>{
 });
 paint.addEventListener("touchstart", (e) => {
     console.log(e)
-    e.preventDefault();
+    // e.preventDefault();
+    console.log(e.clientX, e.pageX, e.offsetX)
     draw = true;
     ctx.beginPath();
     ctx.moveTo(e.clientX, e.clientY);
@@ -60,7 +61,7 @@ paint.addEventListener("mousemove", (e) => {
     obj.lineTo.push(e.offsetX, e.offsetY);
 });
 paint.addEventListener("touchmove", (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if(!draw) return;
     ctx.lineTo(e.clientX, e.clientY);
     ctx.stroke();
