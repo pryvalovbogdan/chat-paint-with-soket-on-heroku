@@ -44,9 +44,9 @@ paint.addEventListener("touchstart", (e) => {
     e.preventDefault();
     draw = true;
     ctx.beginPath();
-    ctx.moveTo(e.offsetX, e.offsetY);
+    ctx.moveTo(e.clientX, e.clientY);
     obj = {
-        moveTo:[e.offsetX, e.offsetY],
+        moveTo:[e.clientX, e.clientY],
         lineTo:[],
     };
 });
@@ -62,11 +62,11 @@ paint.addEventListener("mousemove", (e) => {
 paint.addEventListener("touchmove", (e) => {
     e.preventDefault();
     if(!draw) return;
-    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.lineTo(e.clientX, e.clientY);
     ctx.stroke();
     obj.color = ctx.strokeStyle;
     obj.lineWidth = ctx.lineWidth;
-    obj.lineTo.push(e.offsetX, e.offsetY);
+    obj.lineTo.push(e.clientX, e.clientY);
 });
 
 paint.addEventListener('mouseup', (e) => {
