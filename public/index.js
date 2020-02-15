@@ -38,7 +38,8 @@ paint.addEventListener("mousedown", (e)=>{
         lineTo:[],
     };
 });
-paint.addEventListener("touchstart", ()=>{
+paint.addEventListener("touchstart", (e)=>{
+
     draw = true;
     ctx.beginPath();
     ctx.moveTo(e.offsetX, e.offsetY);
@@ -65,14 +66,14 @@ paint.addEventListener("touchmove", (e)=>{
     obj.lineTo.push(e.offsetX, e.offsetY);
 });
 
-paint.addEventListener('mouseup', () => {
+paint.addEventListener('mouseup', (e) => {
     draw = false;
     allArr.push(obj);
     socket.emit("line",
         JSON.stringify(allArr)
     )
 });
-paint.addEventListener('touchend', () => {
+paint.addEventListener('touchend', (e) => {
     draw = false;
     allArr.push(obj);
     socket.emit("line",
