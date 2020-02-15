@@ -10,16 +10,15 @@ var obj = {
 var allArr = [];
 var paint = document.querySelector("#canvas1");
 var ctx = paint.getContext("2d");
-var clear = document.getElementById("clear")
+var clear = document.getElementById("clear");
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
-ctx.lineWidth = 10;
 var draw = false;
 clearCanvas = () => {
     ctx.clearRect(0, 0, paint.width, paint.height);
     allArr = [];
 };
-clear.addEventListener("click", clearCanvas)
+clear.addEventListener("click", clearCanvas);
 inputColor.addEventListener("change",(e) => {
     ctx.strokeStyle = e.target.value;
 });
@@ -37,7 +36,15 @@ paint.addEventListener("mousedown", (e)=>{
     obj = {
         moveTo:[e.offsetX, e.offsetY],
         lineTo:[],
-
+    };
+});
+paint.addEventListener("touchstart", ()=>{
+    draw = true;
+    ctx.beginPath();
+    ctx.moveTo(e.offsetX, e.offsetY);
+    obj = {
+        moveTo:[e.offsetX, e.offsetY],
+        lineTo:[],
     };
 });
 
@@ -49,6 +56,15 @@ paint.addEventListener("mousemove", (e)=>{
     obj.lineWidth = ctx.lineWidth;
     obj.lineTo.push(e.offsetX, e.offsetY);
 });
+paint.addEventListener("touchmove", (e)=>{
+    if(!draw) return;
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+    obj.color = ctx.strokeStyle;
+    obj.lineWidth = ctx.lineWidth;
+    obj.lineTo.push(e.offsetX, e.offsetY);
+});
+
 paint.addEventListener('mouseup', () => {
     draw = false;
     allArr.push(obj);
@@ -56,8 +72,15 @@ paint.addEventListener('mouseup', () => {
         JSON.stringify(allArr)
     )
 });
+paint.addEventListener('touchend', () => {
+    draw = false;
+    allArr.push(obj);
+    socket.emit("line",
+        JSON.stringify(allArr)
+    )
+});
 paint.addEventListener('mouseout', () => draw = false);
-
+paint.addEventListener('touchcancel', () => draw = false);
 
 var massage = document.getElementById("massage"),
     handle = document.getElementById("handle"),
