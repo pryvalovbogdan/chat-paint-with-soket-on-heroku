@@ -42,12 +42,12 @@ paint.addEventListener("mousedown", (e)=>{
 paint.addEventListener("touchstart", (e) => {
     console.log(e)
     // e.preventDefault();
-    console.log(e.touches.clientX, e.pageX, e.offsetX, e.changedTouches.clientX)
+    console.log(e.touches[0].clientX, e.pageX, e.offsetX, e.changedTouches.clientX)
     draw = true;
     ctx.beginPath();
-    ctx.moveTo(e.clientX, e.clientY);
+    ctx.moveTo(e.touches[0].clientX, e.touches[0].clientY);
     obj = {
-        moveTo:[e.clientX, e.clientY],
+        moveTo:[e.touches[0].clientX, e.touches[0].clientY],
         lineTo:[],
     };
 });
@@ -63,11 +63,11 @@ paint.addEventListener("mousemove", (e) => {
 paint.addEventListener("touchmove", (e) => {
     // e.preventDefault();
     if(!draw) return;
-    ctx.lineTo(e.clientX, e.clientY);
+    ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY);
     ctx.stroke();
     obj.color = ctx.strokeStyle;
     obj.lineWidth = ctx.lineWidth;
-    obj.lineTo.push(e.clientX, e.clientY);
+    obj.lineTo.push(e.touches[0].clientX, e.touches[0].clientY);
 });
 
 paint.addEventListener('mouseup', (e) => {
