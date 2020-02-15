@@ -1,24 +1,23 @@
-
 window.addEventListener("load", () => {
-    var socket = io.connect("https://stormy-refuge-28123.herokuapp.com/");
+    let socket = io.connect("https://stormy-refuge-28123.herokuapp.com/");
 
-    var inputColor = document.querySelector("#color");
-    var lineWidth = document.querySelector("#lineWidth");
-    var obj = {
+    let inputColor = document.querySelector("#color");
+    let lineWidth = document.querySelector("#lineWidth");
+    let obj = {
         color: "black",
         lineWidth: 10,
         moveTo: [],
     };
-    var allArr = [];
-    var paint = document.querySelector("#canvas1");
-    var ctx = paint.getContext("2d");
-    var clear = document.getElementById("clear");
+    let allArr = [];
+    let paint = document.querySelector("#canvas1");
+    let ctx = paint.getContext("2d");
+    let clear = document.getElementById("clear");
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
-    var draw = false;
+    let draw = false;
 
 
-    var massage = document.getElementById("massage"),
+    let massage = document.getElementById("massage"),
         handle = document.getElementById("handle"),
         btn = document.getElementById("send"),
         output = document.getElementById("output");
@@ -28,6 +27,7 @@ window.addEventListener("load", () => {
         ctx.clearRect(0, 0, paint.width, paint.height);
         allArr = [];
     });
+
     inputColor.addEventListener("change", (e) => {
         ctx.strokeStyle = e.target.value;
     });
@@ -51,8 +51,8 @@ window.addEventListener("load", () => {
     paint.addEventListener("touchstart", (e) => {
         draw = true;
         let r = paint.getBoundingClientRect();
-        var currX = e.touches[0].clientX - r.left;
-        var currY = e.touches[0].clientY - r.top;
+        let currX = e.touches[0].clientX - r.left;
+        let currY = e.touches[0].clientY - r.top;
         ctx.beginPath();
         ctx.moveTo(currX, currY);
         obj = {
@@ -122,10 +122,10 @@ window.addEventListener("load", () => {
             ctx.moveTo(obj[i].moveTo[i], obj[i].moveTo[i + 1]);
             ctx.strokeStyle = obj[i].color;
             ctx.lineWidth = obj[i].lineWidth;
-            var lineArr = obj[i].lineTo;
+            let lineArr = obj[i].lineTo;
             if (lineArr === undefined) return;
-            for (var j = 0; j < lineArr.length; j = j + 2) {
-                if (lineArr[j + 1] == undefined) {
+            for (let j = 0; j < lineArr.length; j = j + 2) {
+                if (lineArr[j + 1] === undefined) {
                     return;
                 } else {
                     ctx.lineTo(lineArr[j], lineArr[j + 1]);
@@ -136,9 +136,9 @@ window.addEventListener("load", () => {
     };
 
     getRandomColor = () => {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
+        let letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
             color += letters[Math.floor(Math.random() * 16)];
         }
         return color;
