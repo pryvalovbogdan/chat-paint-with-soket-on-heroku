@@ -30,7 +30,6 @@ lineWidth.addEventListener("change", (e)=>{
 
 
 paint.addEventListener("mousedown", (e)=>{
-    console.log("mose", e)
     draw = true;
     ctx.beginPath();
     ctx.moveTo(e.offsetX, e.offsetY);
@@ -41,12 +40,9 @@ paint.addEventListener("mousedown", (e)=>{
 });
 
 paint.addEventListener("touchstart", (e) => {
-    console.log(e)
-    // e.preventDefault();
     let r = paint.getBoundingClientRect();
     var currX = e.touches[0].clientX - r.left;
      var currY = e.touches[0].clientY - r.top;
-    console.log(e.touches[0].clientX, currX, currY)
     draw = true;
     ctx.beginPath();
     ctx.moveTo(currX, currY);
@@ -68,7 +64,6 @@ paint.addEventListener("touchmove", (e) => {
     let r = paint.getBoundingClientRect();
     var currX = e.touches[0].clientX - r.left;
     var currY = e.touches[0].clientY - r.top;
-    // e.preventDefault();
     if(!draw) return;
     ctx.lineTo(currX, currY);
     ctx.stroke();
@@ -85,7 +80,6 @@ paint.addEventListener('mouseup', (e) => {
     )
 });
 paint.addEventListener('touchend', (e) => {
-    e.preventDefault();
     draw = false;
     allArr.push(obj);
     socket.emit("line",
@@ -93,10 +87,7 @@ paint.addEventListener('touchend', (e) => {
     )
 });
 paint.addEventListener('mouseout', () => draw = false);
-paint.addEventListener('touchcancel', (e) => {
-    e.preventDefault();
-    draw = false
-});
+paint.addEventListener('touchcancel', () => draw = false);
 
 var massage = document.getElementById("massage"),
     handle = document.getElementById("handle"),
